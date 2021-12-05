@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class FilterQueryBuilder
@@ -43,6 +44,10 @@ class FilterQueryBuilder
       $as           = "prefix_{$relatedTable}";
 
       if (!$belongs instanceof BelongsTo) {
+        return;
+      }
+
+      if (!$belongs instanceof HasMany) {
         return;
       }
 
