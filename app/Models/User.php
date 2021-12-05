@@ -41,6 +41,7 @@ class User extends Authenticatable
     'name',
     'email',
     'email_verified_at',
+    'phone',
     'role.name',
   ];
 
@@ -49,6 +50,7 @@ class User extends Authenticatable
     'name',
     'email',
     'email_verified_at',
+    'phone',
     'role.name',
   ];
 
