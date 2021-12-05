@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
     Role::query()->delete();
 
     DB::table('roles')->insert([
-      ['rolename' => 'Super Admin', 'slug' => 'superadmin'],
-      ['rolename' => 'Sub Admin', 'slug' => 'sub-admin'],
-      ['rolename' => 'Employee', 'slug' => 'employee'],
-      ['rolename' => 'Manager', 'slug' => 'manager'],
+      ['name' => 'Super Admin', 'slug' => 'superadmin'],
+      ['name' => 'Sub Admin', 'slug' => 'sub-admin'],
+      ['name' => 'Employee', 'slug' => 'employee'],
+      ['name' => 'Manager', 'slug' => 'manager'],
     ]);
 
     User::create([
