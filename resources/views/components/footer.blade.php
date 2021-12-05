@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="w-full md:w-8/12 px-4">
-        <ul class="flex flex-wrap list-none md:justify-end justify-center hidden">
+        <ul class="flex-wrap list-none md:justify-end justify-center hidden">
           <li>
             <a href="https://www.creative-tim.com?ref=njs-settings"
               class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3">
