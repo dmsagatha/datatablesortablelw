@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\HasAdvancedFilter;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -19,6 +20,7 @@ class User extends Authenticatable
   use HasProfilePhoto;
   use Notifiable;
   use TwoFactorAuthenticatable;
+  use HasAdvancedFilter;
 
   /**
    * The attributes that are mass assignable.
@@ -34,6 +36,22 @@ class User extends Authenticatable
     'role_id'
   ];
 
+  public $orderable = [
+    'id',
+    'name',
+    'email',
+    'email_verified_at',
+    'role.name',
+  ];
+
+  public $filterable = [
+    'id',
+    'name',
+    'email',
+    'email_verified_at',
+    'role.name',
+  ];
+
   public function role(): BelongsTo
   {
     return $this->belongsTo(Role::class);
@@ -43,7 +61,7 @@ class User extends Authenticatable
   {
     return $this->hasMany(Post::class);
   }
-  
+
   protected $withCount = [
     'role',
     'posts'
