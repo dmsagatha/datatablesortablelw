@@ -35,7 +35,7 @@ class UsersTable extends Component
   {
       $this->sortBy            = 'id';
       $this->sortDirection     = 'desc';
-      $this->perPage           = 20;
+      $this->perPage           = 10;
       $this->paginationOptions = config('project.pagination.options');
       $this->orderable         = (new User())->orderable;
   }

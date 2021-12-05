@@ -993,6 +993,9 @@ select{
 	white-space: nowrap;
 	border-width: 0;
 }
+.pointer-events-none{
+	pointer-events: none;
+}
 .invisible{
 	visibility: hidden;
 }
@@ -1042,6 +1045,9 @@ select{
 .float-right{
 	float: right;
 }
+.m-4{
+	margin: 1rem;
+}
 .mx-auto{
 	margin-left: auto;
 	margin-right: auto;
@@ -1049,6 +1055,18 @@ select{
 .-my-2{
 	margin-top: -0.5rem;
 	margin-bottom: -0.5rem;
+}
+.mx-1{
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
+}
+.mx-2{
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+.mx-4{
+	margin-left: 1rem;
+	margin-right: 1rem;
 }
 .ml-3{
 	margin-left: 0.75rem;
@@ -1182,6 +1200,9 @@ select{
 .h-auto{
 	height: auto;
 }
+.h-2{
+	height: 0.5rem;
+}
 .min-h-screen{
 	min-height: 100vh;
 }
@@ -1230,6 +1251,18 @@ select{
 .w-6\/12{
 	width: 50%;
 }
+.w-2{
+	width: 0.5rem;
+}
+.w-24{
+	width: 6rem;
+}
+.w-28{
+	width: 7rem;
+}
+.w-32{
+	width: 8rem;
+}
 .min-w-0{
 	min-width: 0px;
 }
@@ -1247,6 +1280,9 @@ select{
 }
 .max-w-6xl{
 	max-width: 72rem;
+}
+.max-w-full{
+	max-width: 100%;
 }
 .flex-1{
 	flex: 1 1 0%;
@@ -1299,6 +1335,11 @@ select{
 .list-none{
 	list-style-type: none;
 }
+.appearance-none{
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+}
 .grid-cols-6{
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 }
@@ -1331,6 +1372,10 @@ select{
 }
 .gap-1{
 	gap: 0.25rem;
+}
+.gap-x-2{
+	-moz-column-gap: 0.5rem;
+	     column-gap: 0.5rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]){
 	--tw-space-x-reverse: 0;
@@ -1446,6 +1491,10 @@ select{
 .border-gray-100{
 	--tw-border-opacity: 1;
 	border-color: rgba(243, 244, 246, var(--tw-border-opacity));
+}
+.border-red-400{
+	--tw-border-opacity: 1;
+	border-color: rgba(248, 113, 113, var(--tw-border-opacity));
 }
 .bg-white{
 	--tw-bg-opacity: 1;
@@ -1616,6 +1665,15 @@ select{
 .pt-8{
 	padding-top: 2rem;
 }
+.pl-10{
+	padding-left: 2.5rem;
+}
+.pl-5{
+	padding-left: 1.25rem;
+}
+.pr-10{
+	padding-right: 2.5rem;
+}
 .text-left{
 	text-align: left;
 }
@@ -1751,6 +1809,10 @@ select{
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
+.text-blue-500{
+	--tw-text-opacity: 1;
+	color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
 .text-gray-200{
 	--tw-text-opacity: 1;
 	color: rgba(229, 231, 235, var(--tw-text-opacity));
@@ -1767,9 +1829,9 @@ select{
 	--tw-text-opacity: 1;
 	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
-.text-blue-500{
+.text-red-700{
 	--tw-text-opacity: 1;
-	color: rgba(59, 130, 246, var(--tw-text-opacity));
+	color: rgba(185, 28, 28, var(--tw-text-opacity));
 }
 .underline{
 	text-decoration: underline;
@@ -6710,6 +6772,10 @@ readers do not read off random characters that represent icons */
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
+.hover\:bg-gray-200:hover{
+	--tw-bg-opacity: 1;
+	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover{
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -6733,6 +6799,10 @@ readers do not read off random characters that represent icons */
 .hover\:text-indigo-900:hover{
 	--tw-text-opacity: 1;
 	color: rgba(49, 46, 129, var(--tw-text-opacity));
+}
+.hover\:text-blue-500:hover{
+	--tw-text-opacity: 1;
+	color: rgba(59, 130, 246, var(--tw-text-opacity));
 }
 .focus\:z-10:focus{
 	z-index: 10;
@@ -6900,6 +6970,9 @@ readers do not read off random characters that represent icons */
 	.sm\:block{
 		display: block;
 	}
+	.sm\:inline{
+		display: inline;
+	}
 	.sm\:flex{
 		display: flex;
 	}
@@ -6917,6 +6990,9 @@ readers do not read off random characters that represent icons */
 	}
 	.sm\:w-full{
 		width: 100%;
+	}
+	.sm\:w-1\/6{
+		width: 16.666667%;
 	}
 	.sm\:max-w-md{
 		max-width: 28rem;
@@ -7054,6 +7130,9 @@ readers do not read off random characters that represent icons */
 	.md\:min-h-full{
 		min-height: 100%;
 	}
+	.md\:w-1\/4{
+		width: 25%;
+	}
 	.md\:w-4\/12{
 		width: 33.333333%;
 	}
@@ -7063,8 +7142,8 @@ readers do not read off random characters that represent icons */
 	.md\:w-64{
 		width: 16rem;
 	}
-	.md\:w-1\/4{
-		width: 25%;
+	.md\:w-2\/3{
+		width: 66.666667%;
 	}
 	.md\:min-w-full{
 		min-width: 100%;
