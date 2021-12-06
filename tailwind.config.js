@@ -34,11 +34,24 @@ module.exports = {
         sky: colors.sky,
         teal: colors.teal,
       },
+      minHeight: {
+        'screen-75': '75vh'
+      },
+      fontSize: {
+        '55': '55rem'
+      },
+      opacity: {
+        '80': '.8'
+      },
+      zIndex: {
+        '2': 2,
+        '3': 3
+      },
     },
   },
 
   plugins: [
-    require('@tailwindcss/forms'), 
+    require('@tailwindcss/forms'),
     require('@tailwindcss/typography')
   ],
 };

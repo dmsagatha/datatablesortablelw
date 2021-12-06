@@ -33,19 +33,19 @@ class UsersTable extends Component
 
   public function mount()
   {
-      $this->sortBy            = 'id';
-      $this->sortDirection     = 'desc';
-      $this->perPage           = 10;
-      $this->paginationOptions = config('project.pagination.options');
-      $this->orderable         = (new User())->orderable;
+    $this->sortBy            = 'id';
+    $this->sortDirection     = 'desc';
+    $this->perPage           = 10;
+    $this->paginationOptions = config('project.pagination.options');
+    $this->orderable         = (new User())->orderable;
   }
-  
+
   public function render()
   {
     $query = User::with(['role', 'posts'])->advancedFilter([
-        's'               => $this->search ?: null,
-        'order_column'    => $this->sortBy,
-        'order_direction' => $this->sortDirection,
+      's'               => $this->search ?: null,
+      'order_column'    => $this->sortBy,
+      'order_direction' => $this->sortDirection,
     ]);
 
     $users = $query->paginate($this->perPage);
@@ -55,21 +55,33 @@ class UsersTable extends Component
 
   public function getSelectedCountProperty()
   {
-      return count($this->selected);
+    return count($this->selected);
   }
 
   public function updatingSearch()
   {
-      $this->resetPage();
+    $this->resetPage();
   }
 
   public function updatingPerPage()
   {
-      $this->resetPage();
+    $this->resetPage();
   }
 
   public function resetSelected()
   {
-      $this->selected = [];
+    $this->selected = [];
+  }
+
+  public function deleteSelected()
+  {
+    User::whereIn('id', $this->selected)->delete();
+
+    $this->resetSelected();
+  }
+
+  public function delete(User $user)
+  {
+    $user->delete();
   }
 }

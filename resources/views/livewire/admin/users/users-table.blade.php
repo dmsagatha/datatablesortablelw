@@ -28,6 +28,15 @@
           {{ __('Loading...') }}
         </div>
       </div>
+      
+      @if ($selected)
+        <button type="button" 
+          wire:click="confirm('deleteSelected')" 
+          wire:loading.attr="disabled" {{ $this->selectedCount ? '' : 'disabled' }} 
+          class='inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition'>
+          {{ __('Delete Selected') }}
+        </button>
+      @endif
 
       <!-- Paginar -->
       <div class="relative inline-flex mr-2">
@@ -53,6 +62,7 @@
       <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50 text-center text-sm font-bold">
           <tr>
+            <th class="w-9"></th>
             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-28">
               Id
               @include('components.table.sort', ['field' => 'id'])
@@ -85,6 +95,9 @@
         <tbody class="bg-white divide-y divide-gray-200 text-sm">
           @foreach ($users as $item)
             <tr>
+              <td class="px-6 py-4">
+                <input type="checkbox" value="{{ $item->id }}" wire:model="selected">
+              </td>
               <td class="px-6 py-4 whitespace-nowrap">{{ $item->id }}</td>
               <td class="px-6 py-4">{{ $item->name }}</td>
               <td class="px-6 py-4">{{ $item->email }}</td>
@@ -119,73 +132,13 @@
   </x-table.table>
 </div>
 
-{{-- <div>
-  <div class="flex flex-col">
-    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <form method="get">
-          <input class="border-solid border border-gray-300 p-2 w-full md:w-1/4" type="text" placeholder="Search Users" wire:model.debounce.300ms="search"/>
-        </form>
-        <div wire:loading.delay class="col-12 alert alert-info">
-          {{ __('Loading') }}...
-        </div>
-        
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Id
-                  @include('components.table.sort', ['field' => 'id'])
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {{ __('Name') }}
-                  @include('components.table.sort', ['field' => 'name'])
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {{ __('Email') }}
-                  @include('components.table.sort', ['field' => 'email'])
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {{ __('Role') }}
-                  @include('components.table.sort', ['field' => 'role.name'])
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {{ __('Post') }}
-                  @include('components.table.sort', ['field' => 'posts.title'])
-                </th>
-                <th scope="col" class="px-6 py-3 text-left text-xs text-gray-500 uppercase tracking-wider">
-                  {{ __('Phone') }}
-                  @include('components.table.sort', ['field' => 'phone'])
-                </th>
-                <th scope="col" class="relative px-6 py-3">
-                  <span class="sr-only">Editar</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-              @foreach ($users as $item)
-                <tr>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $item->id }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $item->name }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $item->email }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $item->role->name }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    @foreach($item->posts as $key => $entry)
-                      {{ $entry->title }}
-                    @endforeach
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $item->phone }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                  </td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-      
-        {{ $users->appends(\Request::except('page'))->render() }}
-      </div>
-    </div>
-  </div>
-</div> --}}
+@push('scripts')
+  <script>
+    Livewire.on('confirm', e => {
+      if (!confirm("{{ trans('global.areYouSure') }}")) {
+        return
+      }
+      @this[e.callback](...e.argv)
+    })
+</script>
+@endpush
