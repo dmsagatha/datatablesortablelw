@@ -117,7 +117,7 @@
                 </a>
                 
                 @if ($item->posts->count() === 0)
-                  <a href="javascript:void(0)" class="text-red-600 hover:text-red-900" onclick="destroyRegister({{ $item->id }})" title="Eliminar">
+                  <a href="javascript:void(0)" class="text-red-600 hover:text-red-900" wire:click="confirm('delete', {{ $item->id }})" wire:loading.attr="disabled" title="Eliminar">
                     <i class="fas fa-trash mr-2"></i>
                   </a>
                 @endif
