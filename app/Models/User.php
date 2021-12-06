@@ -64,10 +64,10 @@ class User extends Authenticatable
     return $this->hasMany(Post::class);
   }
 
-  protected $withCount = [
+  /* protected $withCount = [
     'role',
     'posts'
-  ];
+  ]; */
 
   /**
    * The attributes that should be hidden for serialization.

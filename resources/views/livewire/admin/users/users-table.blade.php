@@ -96,7 +96,9 @@
           @foreach ($users as $item)
             <tr>
               <td class="px-6 py-4">
-                <input type="checkbox" value="{{ $item->id }}" wire:model="selected">
+                @if ($item->posts->count() === 0)
+                  <input type="checkbox" value="{{ $item->id }}" wire:model="selected">
+                @endif
               </td>
               <td class="px-6 py-4 whitespace-nowrap">{{ $item->id }}</td>
               <td class="px-6 py-4">{{ $item->name }}</td>
@@ -113,6 +115,12 @@
                 <a href="#" class="text-indigo-600 hover:text-indigo-900">
                   <i class="fas fa-edit"></i>
                 </a>
+                
+                @if ($item->posts->count() === 0)
+                  <a href="javascript:void(0)" class="text-red-600 hover:text-red-900" onclick="destroyRegister({{ $item->id }})" title="Eliminar">
+                    <i class="fas fa-trash mr-2"></i>
+                  </a>
+                @endif
               </td>
             </tr>
           @endforeach
